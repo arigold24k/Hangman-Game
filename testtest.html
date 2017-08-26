@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>The Pyschic Game</title>
+</head>
+<body>
+<div id="psychic">
+    <h1>The Pyschic Game</h1>
+    <p>Guess what letter I'm thinking of:</p>
+</div>
+<script type="text/javascript">
+    var CompGuess = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    var Win = 0;
+    var Lose = 0;
+    var guesses = 10;
+    var guessedLetters = [];
+    var userGuess = [];
+    guessedLetters = userGuess;
+
+    document.onkeyup = function(event) {
+        var yourGuess = event.key;
+        guessedLetters.push(yourGuess);
+        var computerChoice = CompGuess[Math.floor(Math.random() * userGuess.length)];
+
+        console.log(computerChoice)
+
+        if (yourGuess === computerChoice) {
+            Win++;
+            guesses = 9;
+        }
+
+        else {
+            guesses--;
+        }
+
+
+        if (guesses === 0){
+            Lose++;
+            guesses = 9;
+        }
+
+        var html = "<h1>The Pyschic Game</h1>" + "<p>Guess what letter I'm thinking of:</p>" + "<p>Wins: " + Win + "</p>" + "<p>Loses: "+ Lose + "<p>Guesses Left: " + guesses + "<p>Your guesses so far: " +  guessedLetters.join(', ');
+        document.querySelector("#psychic").innerHTML = html;
+    }
+</script>
+</body>
+</html>
